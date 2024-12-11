@@ -9,10 +9,10 @@ const InternalHome = () => {
   const [sidebarOpen] = useState(true);
 
   const sidebarLinks = [
-    { href: "/", label: "Home", icon: <Home className="w-6 h-6" /> },
+    { href: "/internalhome", label: "Home", icon: <Home className="w-6 h-6" /> },
     { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-6 h-6" /> },
     {
-      href: "/tasks",
+      href: "/empTaskList",
       label: "Tasks",
       icon: <FileText className="w-6 h-6" />,
       children: [
@@ -31,7 +31,7 @@ const InternalHome = () => {
       {/* Fixed Sidebar (always open) */}
       <Sidebar
         open={sidebarOpen}
-        animate={false}  // Disable animation for collapsing
+        animate={true}  // Disable animation for collapsing
         className="fixed top-0 left-0 h-full z-50 shadow-lg shadow-white"  // Added shadow to the sidebar
       >
         <SidebarBody>
