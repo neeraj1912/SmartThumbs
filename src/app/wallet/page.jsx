@@ -1,55 +1,73 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import { Wallet, CreditCard, ChevronDown, ArrowDownToLine } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Separator } from '@/components/ui/separator'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import React, { useState } from "react";
+import { Wallet, CreditCard, ChevronDown, ArrowDownToLine } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const mockTransactions = [
-  { 
-    id: '1', 
-    date: '2024-03-15', 
-    type: 'Earnings', 
-    amount: 0.05, 
-    currency: 'ETH', 
-    status: 'Completed' 
+  {
+    id: "1",
+    date: "2024-03-15",
+    type: "Earnings",
+    amount: 0.05,
+    currency: "ETH",
+    status: "Completed",
   },
-  { 
-    id: '2', 
-    date: '2024-03-10', 
-    type: 'Withdrawal', 
-    amount: 0.02, 
-    currency: 'ETH', 
-    status: 'Processed' 
-  }
-]
+  {
+    id: "2",
+    date: "2024-03-10",
+    type: "Withdrawal",
+    amount: 0.02,
+    currency: "ETH",
+    status: "Processed",
+  },
+];
 
 const WalletPage = () => {
-  const [balance, setBalance] = useState(1.25)
-  const [selectedCurrency, setSelectedCurrency] = useState('ETH')
-  const [withdrawDialogOpen, setWithdrawDialogOpen] = useState(false)
-  const [withdrawAmount, setWithdrawAmount] = useState('')
+  const [balance, setBalance] = useState(1.25);
+  const [selectedCurrency, setSelectedCurrency] = useState("ETH");
+  const [withdrawDialogOpen, setWithdrawDialogOpen] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState("");
 
-  const currencies = ['ETH', 'USDC', 'BTC']
+  const currencies = ["ETH", "USDC", "BTC"];
 
   const handleWithdraw = () => {
-    const amount = parseFloat(withdrawAmount)
+    const amount = parseFloat(withdrawAmount);
     if (amount > 0 && amount <= balance) {
-      setBalance(prevBalance => prevBalance - amount)
-      setWithdrawDialogOpen(false)
-      setWithdrawAmount('')
+      setBalance((prevBalance) => prevBalance - amount);
+      setWithdrawDialogOpen(false);
+      setWithdrawAmount("");
       // In a real application, you would call an API to process the withdrawal here
-      console.log(`Withdrawn ${amount} ${selectedCurrency}`)
+      console.log(`Withdrawn ${amount} ${selectedCurrency}`);
     } else {
-      console.error('Invalid withdrawal amount')
+      console.error("Invalid withdrawal amount");
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6">
@@ -60,27 +78,38 @@ const WalletPage = () => {
           <div className="relative z-10 flex justify-between items-center p-6 bg-zinc-900/60 backdrop-blur-md rounded-xl border border-zinc-800">
             <div>
               <h1 className="text-3xl font-bold text-purple-500 flex items-center">
-                <Wallet className="mr-4 w-8 h-8" /> 
+                <Wallet className="mr-4 w-8 h-8" />
                 Wallet
               </h1>
               <p className="text-zinc-400 mt-2">Manage your earnings </p>
             </div>
-            
+
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" className="bg-zinc-800 text-purple-400 border-purple-600/50 hover:bg-zinc-700">
+                <Button
+                  variant="outline"
+                  className="bg-zinc-800 text-purple-400 border-purple-600/50 hover:bg-zinc-700"
+                >
                   Connect Wallet
                 </Button>
               </DialogTrigger>
               <DialogContent className="bg-zinc-900 border-zinc-800">
                 <DialogHeader>
-                  <DialogTitle className="text-purple-500">Connect Your Cryptocurrency Wallet</DialogTitle>
+                  <DialogTitle className="text-purple-500">
+                    Connect Your Cryptocurrency Wallet
+                  </DialogTitle>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
-                  <Button variant="outline" className="w-full bg-zinc-800 text-white hover:bg-zinc-700">
+                  <Button
+                    variant="outline"
+                    className="w-full bg-zinc-800 text-white hover:bg-zinc-700"
+                  >
                     MetaMask
                   </Button>
-                  <Button variant="outline" className="w-full bg-zinc-800 text-white hover:bg-zinc-700">
+                  <Button
+                    variant="outline"
+                    className="w-full bg-zinc-800 text-white hover:bg-zinc-700"
+                  >
                     WalletConnect
                   </Button>
                   <Separator className="bg-zinc-700" />
@@ -96,20 +125,20 @@ const WalletPage = () => {
         {/* Wallet Content */}
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="grid w-full grid-cols-3 bg-zinc-900 border border-zinc-800 mb-6">
-            <TabsTrigger 
-              value="overview" 
+            <TabsTrigger
+              value="overview"
               className="data-[state=active]:bg-purple-600/20 data-[state=active]:text-purple-400 text-zinc-400"
             >
               Overview
             </TabsTrigger>
-            <TabsTrigger 
-              value="transactions" 
+            <TabsTrigger
+              value="transactions"
               className="data-[state=active]:bg-purple-600/20 data-[state=active]:text-purple-400 text-zinc-400"
             >
               Transactions
             </TabsTrigger>
-            <TabsTrigger 
-              value="account" 
+            <TabsTrigger
+              value="account"
               className="data-[state=active]:bg-purple-600/20 data-[state=active]:text-purple-400 text-zinc-400"
             >
               Account
@@ -126,17 +155,18 @@ const WalletPage = () => {
                     <span className="text-zinc-400">Total Balance</span>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button 
-                          variant="ghost" 
+                        <Button
+                          variant="ghost"
                           className="text-purple-400 hover:bg-zinc-800"
                         >
-                          {selectedCurrency} <ChevronDown className="ml-2 h-4 w-4" />
+                          {selectedCurrency}{" "}
+                          <ChevronDown className="ml-2 h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="bg-zinc-900 border-zinc-800">
                         {currencies.map((currency) => (
-                          <DropdownMenuItem 
-                            key={currency} 
+                          <DropdownMenuItem
+                            key={currency}
                             onSelect={() => setSelectedCurrency(currency)}
                             className="hover:bg-zinc-800 text-white"
                           >
@@ -146,11 +176,13 @@ const WalletPage = () => {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
-                  <div className="text-3xl font-bold text-purple-500">{balance} {selectedCurrency}</div>
+                  <div className="text-3xl font-bold text-purple-500">
+                    {balance} {selectedCurrency}
+                  </div>
                   <p className="text-zinc-400 mt-2">
                     ≈ ${(balance * 3500).toFixed(2)} USD
                   </p>
-                  <Button 
+                  <Button
                     className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white"
                     onClick={() => setWithdrawDialogOpen(true)}
                   >
@@ -168,7 +200,9 @@ const WalletPage = () => {
                     <span className="text-zinc-400">Pending Earnings</span>
                     <CreditCard className="w-6 h-6 text-green-500" />
                   </div>
-                  <div className="text-3xl font-bold text-green-500">0.25 {selectedCurrency}</div>
+                  <div className="text-3xl font-bold text-green-500">
+                    0.25 {selectedCurrency}
+                  </div>
                   <p className="text-zinc-400 mt-2">Ready to Withdraw</p>
                 </div>
               </div>
@@ -191,33 +225,43 @@ const WalletPage = () => {
           {/* Transactions Tab */}
           <TabsContent value="transactions">
             <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
-              <h2 className="text-2xl font-bold text-purple-500 mb-6">Transaction History</h2>
+              <h2 className="text-2xl font-bold text-purple-500 mb-6">
+                Transaction History
+              </h2>
               <div className="space-y-4">
                 {mockTransactions.map((transaction) => (
-                  <div 
-                    key={transaction.id} 
+                  <div
+                    key={transaction.id}
                     className="flex justify-between items-center p-4 bg-zinc-800 rounded-lg"
                   >
                     <div>
-                      <p className="font-medium text-white">{transaction.type}</p>
-                      <p className="text-sm text-zinc-400">{transaction.date}</p>
+                      <p className="font-medium text-white">
+                        {transaction.type}
+                      </p>
+                      <p className="text-sm text-zinc-400">
+                        {transaction.date}
+                      </p>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-purple-500">
                         {transaction.amount} {transaction.currency}
                       </p>
-                      <p className="text-sm text-zinc-400">{transaction.status}</p>
+                      <p className="text-sm text-zinc-400">
+                        {transaction.status}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </TabsContent>
-
+                
           {/* Account Tab */}
           <TabsContent value="account">
             <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
-              <h2 className="text-2xl font-bold text-purple-500 mb-6">Account Details</h2>
+              <h2 className="text-2xl font-bold text-purple-500 mb-6">
+                Account Details
+              </h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
@@ -226,7 +270,9 @@ const WalletPage = () => {
                   </div>
                   <div>
                     <p className="text-zinc-400 mb-2">Cryptocurrency</p>
-                    <p className="font-medium text-purple-500">{selectedCurrency}</p>
+                    <p className="font-medium text-purple-500">
+                      {selectedCurrency}
+                    </p>
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -248,7 +294,9 @@ const WalletPage = () => {
         <Dialog open={withdrawDialogOpen} onOpenChange={setWithdrawDialogOpen}>
           <DialogContent className="bg-zinc-900 border-zinc-800">
             <DialogHeader>
-              <DialogTitle className="text-purple-500">Withdraw Earnings</DialogTitle>
+              <DialogTitle className="text-purple-500">
+                Withdraw Earnings
+              </DialogTitle>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
@@ -266,7 +314,10 @@ const WalletPage = () => {
               </div>
             </div>
             <DialogFooter>
-              <Button onClick={handleWithdraw} className="bg-purple-600 hover:bg-purple-700 text-white">
+              <Button
+                onClick={handleWithdraw}
+                className="bg-purple-600 hover:bg-purple-700 text-white"
+              >
                 Confirm Withdrawal
               </Button>
             </DialogFooter>
@@ -274,8 +325,7 @@ const WalletPage = () => {
         </Dialog>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WalletPage
-
+export default WalletPage;
