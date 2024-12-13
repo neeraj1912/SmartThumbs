@@ -20,7 +20,7 @@ const InternalHome = () => {
         { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
       ],
     },
-    { href: "/profile", label: "Profile", icon: <User className="w-6 h-6" /> },
+    { href: "/userprofile", label: "Profile", icon: <User className="w-6 h-6" /> },
     { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
     { href: "/settings", label: "Settings", icon: <Settings className="w-6 h-6" /> },
     { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
