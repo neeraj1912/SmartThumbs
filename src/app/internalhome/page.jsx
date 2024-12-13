@@ -1,227 +1,111 @@
-'use client'
+"use client";
+import React, { useState } from "react";
+import { Sidebar, SidebarBody, SidebarLink } from "@/components/sidebar";
+import { Home, LayoutDashboard, FileText, User, Wallet, Settings, LogOut } from "lucide-react";
+import GreetingMessage from "@/components/GreetingMessage"; // Import the new GreetingMessage component
+import { WobbleCard } from "@/components/wobble-card"; // Import WobbleCard
 
-import React, { useState } from 'react'
-import { Wallet, CreditCard, ChevronDown, Home, LayoutDashboard, FileText, User, Settings, LogOut } from 'lucide-react'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Separator } from '@/components/ui/separator'
+const InternalHome = () => {
+  const [sidebarOpen] = useState(true);
 
-const mockTransactions = [
-  { 
-    id: '1', 
-    date: '2024-03-15', 
-    type: 'Earnings', 
-    amount: 0.05, 
-    currency: 'ETH', 
-    status: 'Completed' 
-  },
-  { 
-    id: '2', 
-    date: '2024-03-10', 
-    type: 'Withdrawal', 
-    amount: 0.02, 
-    currency: 'ETH', 
-    status: 'Processed' 
-  }
-]
-
-const WalletPage = () => {
-  const [balance, setBalance] = useState(1.25)
-  const [selectedCurrency, setSelectedCurrency] = useState('ETH')
-
-  const currencies = ['ETH', 'USDC', 'BTC']
+  const sidebarLinks = [
+    { href: "/internalhome", label: "Home", icon: <Home className="w-6 h-6" /> },
+    { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-6 h-6" /> },
+    {
+      href: "/empTaskList",
+      label: "Tasks",
+      icon: <FileText className="w-6 h-6" />,
+      children: [
+        { href: "/tasks/data-labeling", label: "Data Labeling" },
+        { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
+      ],
+    },
+    { href: "/profile", label: "Profile", icon: <User className="w-6 h-6" /> },
+    { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
+    { href: "/settings", label: "Settings", icon: <Settings className="w-6 h-6" /> },
+    { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
+  ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Wallet Header with Gradient */}
-        <div className="relative mb-8">
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-400/20 to-purple-600/20 opacity-50 blur-xl rounded-xl"></div>
-          <div className="relative z-10 flex justify-between items-center p-6 bg-zinc-900/60 backdrop-blur-md rounded-xl border border-zinc-800">
-            <div>
-              <h1 className="text-3xl font-bold text-purple-500 flex items-center">
-                <Wallet className="mr-4 w-8 h-8" /> 
-                Freelancer Wallet
-              </h1>
-              <p className="text-zinc-400 mt-2">Manage your earnings from data labelling projects</p>
-            </div>
-            
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="outline" className="bg-zinc-800 text-purple-400 border-purple-600/50 hover:bg-zinc-700">
-                  Connect Wallet
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="bg-zinc-900 border-zinc-800">
-                <DialogHeader>
-                  <DialogTitle className="text-purple-500">Connect Your Cryptocurrency Wallet</DialogTitle>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <Button variant="outline" className="w-full bg-zinc-800 text-white hover:bg-zinc-700">
-                    MetaMask
-                  </Button>
-                  <Button variant="outline" className="w-full bg-zinc-800 text-white hover:bg-zinc-700">
-                    WalletConnect
-                  </Button>
-                  <Separator className="bg-zinc-700" />
-                  <p className="text-sm text-zinc-400 text-center">
-                    Select a wallet to connect
-                  </p>
-                </div>
-              </DialogContent>
-            </Dialog>
+    <div className="flex h-screen">
+      {/* Fixed Sidebar (always open) */}
+      <Sidebar
+        open={sidebarOpen}
+        animate={true}  // Disable animation for collapsing
+        className="fixed top-0 left-0 h-full z-50 shadow-lg shadow-white"  // Added shadow to the sidebar
+      >
+        <SidebarBody>
+          {/* Logo */}
+          <div className="flex justify-center py-4">
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="w-20 h-auto mb-8 mt-5"  // Fixed logo size
+            />
           </div>
-        </div>
+          
+          {/* Sidebar Links */}
+          {sidebarLinks.map((link, index) => (
+            <SidebarLink key={index} link={link} />
+          ))}
+        </SidebarBody>
+      </Sidebar>
 
-        {/* Wallet Content */}
-        <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-zinc-900 border border-zinc-800 mb-6">
-            <TabsTrigger 
-              value="overview" 
-              className="data-[state=active]:bg-purple-600/20 data-[state=active]:text-purple-400 text-zinc-400"
-            >
-              Overview
-            </TabsTrigger>
-            <TabsTrigger 
-              value="transactions" 
-              className="data-[state=active]:bg-purple-600/20 data-[state=active]:text-purple-400 text-zinc-400"
-            >
-              Transactions
-            </TabsTrigger>
-            <TabsTrigger 
-              value="account" 
-              className="data-[state=active]:bg-purple-600/20 data-[state=active]:text-purple-400 text-zinc-400"
-            >
-              Account
-            </TabsTrigger>
-          </TabsList>
+      {/* Main Content */}
+      <div className="flex-1 overflow-y-auto ml-[300px] bg-zinc-950">
+        <GreetingMessage user="John Doe" /> {/* Pass the user prop to the GreetingMessage component */}
 
-          <TabsContent value="overview">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Total Balance Card */}
-              <div className="relative bg-zinc-900 rounded-xl border border-zinc-800 p-6 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-400/10 to-purple-600/10 opacity-50 blur-xl"></div>
-                <div className="relative z-10">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-zinc-400">Total Balance</span>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button 
-                          variant="ghost" 
-                          className="text-purple-400 hover:bg-zinc-800"
-                        >
-                          {selectedCurrency} <ChevronDown className="ml-2 h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent className="bg-zinc-900 border-zinc-800">
-                        {currencies.map((currency) => (
-                          <DropdownMenuItem 
-                            key={currency} 
-                            onSelect={() => setSelectedCurrency(currency)}
-                            className="hover:bg-zinc-800 text-white"
-                          >
-                            {currency}
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                  <div className="text-3xl font-bold text-purple-500">{balance} {selectedCurrency}</div>
-                  <p className="text-zinc-400 mt-2">
-                    ≈ ${(balance * 3500).toFixed(2)} USD
-                  </p>
-                </div>
-              </div>
-
-              {/* Pending Earnings Card */}
-              <div className="relative bg-zinc-900 rounded-xl border border-zinc-800 p-6 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-green-400/10 to-green-600/10 opacity-50 blur-xl"></div>
-                <div className="relative z-10">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-zinc-400">Pending Earnings</span>
-                    <CreditCard className="w-6 h-6 text-green-500" />
-                  </div>
-                  <div className="text-3xl font-bold text-green-500">0.25 {selectedCurrency}</div>
-                  <p className="text-zinc-400 mt-2">Ready to Withdraw</p>
-                </div>
-              </div>
-
-              {/* Total Projects Card */}
-              <div className="relative bg-zinc-900 rounded-xl border border-zinc-800 p-6 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-400/10 to-blue-600/10 opacity-50 blur-xl"></div>
-                <div className="relative z-10">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-zinc-400">Total Projects</span>
-                    <Wallet className="w-6 h-6 text-blue-500" />
-                  </div>
-                  <div className="text-3xl font-bold text-blue-500">7</div>
-                  <p className="text-zinc-400 mt-2">Completed Tasks</p>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-
-          {/* Transactions Tab */}
-          <TabsContent value="transactions">
-            <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
-              <h2 className="text-2xl font-bold text-purple-500 mb-6">Transaction History</h2>
-              <div className="space-y-4">
-                {mockTransactions.map((transaction) => (
-                  <div 
-                    key={transaction.id} 
-                    className="flex justify-between items-center p-4 bg-zinc-800 rounded-lg"
-                  >
-                    <div>
-                      <p className="font-medium text-white">{transaction.type}</p>
-                      <p className="text-sm text-zinc-400">{transaction.date}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-purple-500">
-                        {transaction.amount} {transaction.currency}
-                      </p>
-                      <p className="text-sm text-zinc-400">{transaction.status}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-
-          {/* Account Tab */}
-          <TabsContent value="account">
-            <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
-              <h2 className="text-2xl font-bold text-purple-500 mb-6">Account Details</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-zinc-400 mb-2">Wallet Address</p>
-                    <p className="font-medium text-white">0x1234...5678</p>
-                  </div>
-                  <div>
-                    <p className="text-zinc-400 mb-2">Cryptocurrency</p>
-                    <p className="font-medium text-purple-500">{selectedCurrency}</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-zinc-400 mb-2">Network</p>
-                    <p className="font-medium text-white">Ethereum Mainnet</p>
-                  </div>
-                  <div>
-                    <p className="text-zinc-400 mb-2">Verification Status</p>
-                    <p className="font-medium text-green-500">Verified</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
-      </div>
+        {/* Wobble Cards */}
+        <div className="task-cards flex space-x-4 p-4">
+          {/* Card 1: Data Labelling */}
+          <div className="flex flex-col space-y-6">
+  {/* Card 1: Data Labelling */}
+  
+  {/* Card 1: Data Labelling */}
+  <WobbleCard containerClassName="flex-1 bg-zinc-950 rounded-lg shadow-md relative overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-400 to-purple-600 opacity-40 blur-xl"></div>
+    <h2 className="text-2xl font-bold mb-4 text-purple-500 relative">Thumbnail Rater</h2>
+    <p className="text-slate-300 mb-6 relative">
+      Evaluate and rate image thumbnails based on visual appeal, 
+      relevance, and potential engagement to improve content selection.
+    </p>
+    <div className="flex space-x-4 relative">
+      <button className="flex items-center bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition">
+        Upload Task
+      </button>
+      <button className="flex items-center bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800 transition">
+        Do Task
+      </button>
     </div>
-  )
-}
+  </WobbleCard>
 
-export default WalletPage
+  
+
+  {/* Card 2: Thumbnail Rater */}
+  <WobbleCard containerClassName="flex-1 bg-zinc-950 rounded-lg shadow-md relative overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-400 to-blue-600 opacity-40 blur-xl"></div>
+    <h2 className="text-2xl font-bold mb-4 text-blue-500 relative">Data Labelling</h2>
+    <p className="text-slate-300 mb-6 relative">
+      Assist in organizing and categorizing data sets by adding precise labels 
+      to improve machine learning model accuracy and training efficiency.
+    </p>
+    <div className="flex space-x-4 relative">
+      <button className="flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+        Upload Task
+      </button>
+      <button className="flex items-center bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">
+        Do Task
+      </button>
+    </div>
+  </WobbleCard>
+</div>
+
+</div>
+
+
+        </div>
+      </div>
+  );
+};
+
+export default InternalHome;
