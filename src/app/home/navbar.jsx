@@ -32,21 +32,21 @@ export default function FloatingNavDemo() {
   ];
 
   return (
-    <div className="relative w-full bg-black">
-      <div className="flex items-center justify-between px-4 py-2">
+    <div className="relative w-full bg-black h-24 border-b border-slate-800">
+      <div className="flex items-center justify-between px-4 h-full">
         <div className="flex items-center">
           <img
             src="/images/Infinity.png"
             alt="Logo"
-            className="h-33 w-40 object-cover"
+            className="h-24 w-24 object-cover"
           />
         </div>
-        <div className="flex-1 flex justify-center">
+        {/* <div className="flex-1 flex justify-center"> */}
           <FloatingNav
             navItems={navItems}
-            className="bg-black p-2 rounded-lg shadow-lg text-white"
+            className="bg-black p-2 rounded-lg shadow-lg text-white border border-slate-700"
           />
-        </div>
+        {/* </div> */}
         <button className="hidden sm:flex bg-slate-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
           Login/Register
         </button>
