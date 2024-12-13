@@ -17,6 +17,17 @@
     "lucide-react": "^0.465.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "15.0.3",
+<<<<<<< HEAD
+=======
+    "qss": "^3.0.0",
+    "@tabler/icons-react": "^3.24.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.13.1",
+    "icons-react": "^3.7.1",
+    "lucide-react": "^0.465.0",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+>>>>>>> bf3863d35a47e20752139551b58a6d54fc558afd
     "prop-types": "^15.8.1",
     "qss": "^3.0.0",
     "react": "^18.3.1",
