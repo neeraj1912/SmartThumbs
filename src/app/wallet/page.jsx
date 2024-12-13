@@ -1,13 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Wallet, CreditCard, ChevronDown, Home, LayoutDashboard, FileText, User, Settings, LogOut } from 'lucide-react'
-import { Card } from '@/components/ui/card'
+import { Wallet, CreditCard, ChevronDown, ArrowDownToLine } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 const mockTransactions = [
   { 
@@ -31,8 +33,23 @@ const mockTransactions = [
 const WalletPage = () => {
   const [balance, setBalance] = useState(1.25)
   const [selectedCurrency, setSelectedCurrency] = useState('ETH')
+  const [withdrawDialogOpen, setWithdrawDialogOpen] = useState(false)
+  const [withdrawAmount, setWithdrawAmount] = useState('')
 
   const currencies = ['ETH', 'USDC', 'BTC']
+
+  const handleWithdraw = () => {
+    const amount = parseFloat(withdrawAmount)
+    if (amount > 0 && amount <= balance) {
+      setBalance(prevBalance => prevBalance - amount)
+      setWithdrawDialogOpen(false)
+      setWithdrawAmount('')
+      // In a real application, you would call an API to process the withdrawal here
+      console.log(`Withdrawn ${amount} ${selectedCurrency}`)
+    } else {
+      console.error('Invalid withdrawal amount')
+    }
+  }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6">
@@ -44,9 +61,9 @@ const WalletPage = () => {
             <div>
               <h1 className="text-3xl font-bold text-purple-500 flex items-center">
                 <Wallet className="mr-4 w-8 h-8" /> 
-                Freelancer Wallet
+                Wallet
               </h1>
-              <p className="text-zinc-400 mt-2">Manage your earnings from data labelling projects</p>
+              <p className="text-zinc-400 mt-2">Manage your earnings </p>
             </div>
             
             <Dialog>
@@ -133,6 +150,13 @@ const WalletPage = () => {
                   <p className="text-zinc-400 mt-2">
                     ≈ ${(balance * 3500).toFixed(2)} USD
                   </p>
+                  <Button 
+                    className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white"
+                    onClick={() => setWithdrawDialogOpen(true)}
+                  >
+                    <ArrowDownToLine className="mr-2 h-4 w-4" />
+                    Withdraw Earnings
+                  </Button>
                 </div>
               </div>
 
@@ -219,9 +243,39 @@ const WalletPage = () => {
             </div>
           </TabsContent>
         </Tabs>
+
+        {/* Withdraw Dialog */}
+        <Dialog open={withdrawDialogOpen} onOpenChange={setWithdrawDialogOpen}>
+          <DialogContent className="bg-zinc-900 border-zinc-800">
+            <DialogHeader>
+              <DialogTitle className="text-purple-500">Withdraw Earnings</DialogTitle>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="amount" className="text-right">
+                  Amount
+                </Label>
+                <Input
+                  id="amount"
+                  type="number"
+                  value={withdrawAmount}
+                  onChange={(e) => setWithdrawAmount(e.target.value)}
+                  className="col-span-3 bg-zinc-800 border-zinc-700 text-white"
+                  placeholder="0.00"
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button onClick={handleWithdraw} className="bg-purple-600 hover:bg-purple-700 text-white">
+                Confirm Withdrawal
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   )
 }
 
 export default WalletPage
+
