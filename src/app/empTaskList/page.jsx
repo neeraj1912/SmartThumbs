@@ -51,6 +51,17 @@ const initialTasks = [
     estimatedTime: "1.5 hours",
     currency: "BTC",
   },
+  {
+    id: 4,
+    type: "Thumbnail Rating",
+    complexity: "Complex",
+    contentCategory: "Education",
+    title: "Educational Content Semantic Labeling",
+    description: "Perform detailed semantic labeling of educational texts",
+    paymentAmount: 0.00069,
+    estimatedTime: "6.9 hours",
+    currency: "BTC",
+  },
 ];
 
 // Sidebar links
@@ -221,7 +232,7 @@ const TaskListPage = () => {
                       ? "text-blue-500"
                       : task.type === "Thumbnail Rating"
                       ? "text-purple-600"
-                      : "text-blue-600"
+                      : "text-pink-600"
                   }`}
                 >
                   {task.type}
