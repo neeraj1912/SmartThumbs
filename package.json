@@ -19,7 +19,7 @@
     "@tabler/icons-react": "^3.24.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.13.1",
+    "framer-motion": "^11.14.3",
     "icons-react": "^3.7.1",
     "lucide-react": "^0.465.0",
     "mini-svg-data-uri": "^1.4.4",
