@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/sidebar";
+import Header from "@/components/header";
 import {
   Home,
   LayoutDashboard,
@@ -80,13 +81,10 @@ const UserProfile = () => {
 
         {/* Main Content */}
         <div className={"flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white"}>
-          <div className="flex items-center mb-6 ml-9">
-            <h1 className="text-3xl font-bold">Welcome back, John Doe</h1>
-          </div>
-
+        <Header title="Profile"></Header>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {/* Profile Card */}
-            <div className="bg-gray-900/70 backdrop-blur-sm rounded-lg shadow-md p-6">
+            <div className="bg-zinc-900/70 backdrop-blur-sm rounded-lg shadow-md p-6">
               <div className="flex flex-col items-center text-center">
                 <Image
                   src="/user.png"
@@ -96,7 +94,7 @@ const UserProfile = () => {
                   className="rounded-full mb-4"
                 />
                 <h2 className="text-xl font-semibold">John Doe</h2>
-                <p className="text-gray-400">@johndoe</p>
+                <p className="text-zinc-400">@johndoe</p>
                 <button className="mt-4 px-4 py-2 bg-blue-600/20 text-blue-400 rounded-md hover:bg-blue-600/30 transition-colors border border-blue-500/20">
                   Edit Profile
                 </button>
@@ -104,7 +102,7 @@ const UserProfile = () => {
             </div>
 
             {/* Points Card with Fancy Animation */}
-            <div className="bg-gray-900/70 backdrop-blur-sm rounded-lg shadow-md p-6 flex flex-col justify-center items-center overflow-hidden">
+            <div className="bg-zinc-900/70 backdrop-blur-sm rounded-lg shadow-md p-6 flex flex-col justify-center items-center overflow-hidden">
               <h2 className="text-lg font-semibold mb-4">Total Points</h2>
               <div className="relative w-48 h-48">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
@@ -137,7 +135,7 @@ const UserProfile = () => {
                     1500
                   </motion.span>
                   <motion.span 
-                    className="text-gray-400 text-sm mt-1"
+                    className="text-zinc-400 text-sm mt-1"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.5 }}
@@ -149,20 +147,20 @@ const UserProfile = () => {
             </div>
 
             {/* Tasks Solved Card */}
-            <div className="bg-gray-900/70 backdrop-blur-sm rounded-lg shadow-md p-6">
+            <div className="bg-zinc-900/70 backdrop-blur-sm rounded-lg shadow-md p-6">
               <h2 className="text-lg font-semibold mb-4">Tasks Solved</h2>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-[#2563EB]">Labelling task</span>
-                  <span className="text-gray-300">23</span>
+                  <span className="text-zinc-300">23</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-[#EC4899]">Thumbnail rating</span>
-                  <span className="text-gray-300">6</span>
+                  <span className="text-zinc-300">6</span>
                 </div>
-                <div className="mt-6 pt-4 border-t border-gray-700">
+                <div className="mt-6 pt-4 border-t border-zinc-700">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Total tasks done</span>
+                    <span className="text-zinc-300">Total tasks done</span>
                     <span className="text-xl font-bold">29</span>
                   </div>
                 </div>
@@ -171,19 +169,19 @@ const UserProfile = () => {
           </div>
 
           {/* Recently Completed Tasks */}
-          <div className="bg-gray-900/70 backdrop-blur-sm rounded-lg shadow-md p-6 mt-6">
+          <div className="bg-zinc-900/70 backdrop-blur-sm rounded-lg shadow-md p-6 mt-6">
             <h2 className="text-lg font-semibold mb-4">Recently Completed Tasks</h2>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-gray-800/70">
+                  <tr className="bg-zinc-800/70">
                     <th className="px-4 py-2 text-left">Task Name</th>
                     <th className="px-4 py-2 text-left">Employer</th>
                     <th className="px-4 py-2 text-left">Date</th>
                     <th className="px-4 py-2 text-left">Points Earned</th>
                   </tr>
                 </thead>
-                <tbody className="bg-gray-900/70">
+                <tbody className="bg-zinc-900/70">
                   {[
                     { name: "Label Dataset A", employer: "ABC Corp", date: "2024-12-10", points: 200 },
                     { name: "Thumbnail Review", employer: "XYZ Media", date: "2024-12-09", points: 350 },
@@ -196,7 +194,7 @@ const UserProfile = () => {
                     { name: "Spam Filtering", employer: "SecureMail", date: "2024-12-02", points: 450 },
                     { name: "Topic Modeling", employer: "ResearchHub", date: "2024-12-01", points: 500 },
                   ].map((task, index) => (
-                    <tr key={index} className={index % 2 === 0 ? "bg-gray-900/50" : "bg-gray-900/40"}>
+                    <tr key={index} className={index % 2 === 0 ? "bg-zinc-900/50" : "bg-zinc-900/40"}>
                       <td className="px-4 py-2">{task.name}</td>
                       <td className="px-4 py-2">{task.employer}</td>
                       <td className="px-4 py-2">{task.date}</td>

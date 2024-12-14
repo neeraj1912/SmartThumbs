@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import Header from "@/components/header";
 // Lucide icons
 import {
   Wallet,
@@ -135,22 +135,16 @@ const WalletPage = () => {
             </SidebarBody>
           </Sidebar>
     <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white p-6">
-    <div className="welcome-message px-4 mb-10">
-          <h2 className="text-4xl font-bold text-white mt-3 mb-1">
-            <span className="text-4xl font-bold bg-gradient-to-r f from-purple-500 via-violet-500 via-pink-500 to-blue-800 bg-clip-text text-transparent mb-2">
-              Micro Task Vault
-            </span>
-          </h2>
-          </div>
+    <Header title="Wallet"></Header>
       <div className="max-w-4xl mx-auto">
         {/* Wallet Header with Gradient */}
         <div className="relative mb-8">
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-400/20 to-purple-600/20 opacity-50 blur-xl rounded-xl"></div>
           <div className="relative z-10 flex justify-between items-center p-6 bg-zinc-900/60 backdrop-blur-md rounded-xl border border-zinc-800">
             <div>
-              <h1 className="text-3xl font-bold text-purple-500 flex items-center">
-                <Wallet className="mr-4 w-8 h-8" />
-                Wallet
+              <h1 className="text-3xl font-bold text-slate-100 flex items-center">
+                <Wallet className="mr-4 w-8 h-8 text-purple-500" />
+                Joe Doe
               </h1>
               <p className="text-zinc-400 mt-2">Manage your earnings </p>
             </div>
