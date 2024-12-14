@@ -11,14 +11,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             
           {/* Logo and Address Section */}
-          <div className="flex flex-col items-start">
-            <Link href="/" className="mb-4">
+          <div className="flex flex-col items-start p-3">
+            <Link href="/" className="mb-1">
               <Image 
                 src="/images/Infinity.png"  
                 alt="Company Logo" 
-                width={150} 
+                width={200} 
                 height={50} 
-                className="mb-4"
+                className="mb-0"
               />
               
             </Link>
