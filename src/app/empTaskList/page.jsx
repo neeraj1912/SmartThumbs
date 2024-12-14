@@ -12,9 +12,19 @@ import {
   Wallet,
   Settings,
   LogOut,
+  Target,
+  Bolt,
 } from "lucide-react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/sidebar";
 
+import Header from "@/components/header";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+
+const handleButtonClick = () => {
+  // You can add any additional logic here if needed
+  router.push("/labeltaskupload");
+};
 
 // Mock data for tasks with crypto payment amounts
 const initialTasks = [
@@ -142,19 +152,12 @@ const TaskListPage = () => {
 
       {/* Right Side - Tasks List */}
       <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950">
-        <div className="welcome-message px-4">
-          <h2 className="text-4xl font-bold text-white mt-3 mb-1">
-            <span className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-violet-500 via-pink-500 to-blue-800 bg-clip-text text-transparent mb-2">
-              Micro Task Vault
-            </span>
-          </h2>
-          <div class=" text-5xl font-semibold text-center text-slate-200">Task List
+        {/* New Header */}
+         <Header title="Task"></Header>
   
-</div>
-
-        </div>
-        <hr class="w-2/3 h-1 mx-auto my-1 bg-gradient-to-r from-purple-500/30 via-indigo-500/30 to-blue-500/30 border-0 rounded md:my-7 dark:bg-gradient-to-r dark:from-purple-700/30 dark:via-indigo-700/30 dark:to-blue-700/30"></hr>
-
+  {/* Main Content */}
+ 
+        {/* Rest of the existing code remains the same */}
         {/* Search and Filter Section */}
         <div className="flex mb-4 space-x-4 items-center">
           {/* Search Input */}
@@ -208,7 +211,6 @@ const TaskListPage = () => {
           <div
             key={task.id}
             className="p-4 mb-4 rounded bg-zinc-800 transition-shadow hover:shadow-[0_4px_6px_rgba(138,57,252,0.2),_0_4px_15px_rgba(139,92,246,0.3),_0_4px_25px_rgba(59,130,246,0.4)]"
-
           >
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-semibold text-white">{task.title}</h3>
@@ -238,7 +240,7 @@ const TaskListPage = () => {
                   {task.type}
                 </div>
               </div>
-              <button class="px-5 py-3 text-xs uppercase tracking-widest font-medium text-slate-300 bg-gradient-to-r from-purple-800 to-blue-800 border-none rounded-full shadow-lg transition-all duration-300 ease-in-out outline-none cursor-pointer hover:from-blue-600 hover:to-purple-600 hover:text-white hover:shadow-xl hover:-translate-y-2 active:-translate-y-0.5">
+              <button href="/labeltaskupload" class="px-5 py-3 text-xs uppercase tracking-widest font-medium text-slate-300 bg-gradient-to-r from-purple-800 to-blue-800 border-none rounded-full shadow-lg transition-all duration-300 ease-in-out outline-none cursor-pointer hover:from-blue-600 hover:to-purple-600 hover:text-white hover:shadow-xl hover:-translate-y-2 active:-translate-y-0.5">
                 Do Task
               </button>
             </div>
