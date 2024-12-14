@@ -51,6 +51,17 @@ const initialTasks = [
     estimatedTime: "1.5 hours",
     currency: "BTC",
   },
+  {
+    id: 4,
+    type: "Thumbnail Rating",
+    complexity: "Complex",
+    contentCategory: "Education",
+    title: "Educational Content Semantic Labeling",
+    description: "Perform detailed semantic labeling of educational texts",
+    paymentAmount: 0.00069,
+    estimatedTime: "6.9 hours",
+    currency: "BTC",
+  },
 ];
 
 // Sidebar links
@@ -70,7 +81,7 @@ const sidebarLinks = [
       { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
     ],
   },
-  { href: "/profile", label: "Profile", icon: <User className="w-6 h-6" /> },
+  { href: "/userprofile", label: "Profile", icon: <User className="w-6 h-6" /> },
   { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
   {
     href: "/settings",
@@ -133,7 +144,7 @@ const TaskListPage = () => {
       <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950">
         <div className="welcome-message px-4">
           <h2 className="text-4xl font-bold text-white mt-3 mb-1">
-            <span className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-700 bg-clip-text text-transparent mb-2">
+            <span className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-violet-500 via-pink-500 to-blue-800 bg-clip-text text-transparent mb-2">
               Micro Task Vault
             </span>
           </h2>
@@ -221,7 +232,7 @@ const TaskListPage = () => {
                       ? "text-blue-500"
                       : task.type === "Thumbnail Rating"
                       ? "text-purple-600"
-                      : "text-blue-600"
+                      : "text-pink-600"
                   }`}
                 >
                   {task.type}

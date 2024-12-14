@@ -19,10 +19,10 @@ const UserProfile = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const sidebarLinks = [
-    { href: "/", label: "Home", icon: <Home className="w-6 h-6" /> },
+    { href: "/internalhome", label: "Home", icon: <Home className="w-6 h-6" /> },
     { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-6 h-6" /> },
     {
-      href: "/tasks",
+      href: "/empTaskList",
       label: "Tasks",
       icon: <FileText className="w-6 h-6" />,
       children: [
@@ -30,7 +30,7 @@ const UserProfile = () => {
         { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
       ],
     },
-    { href: "/profile", label: "Profile", icon: <User className="w-6 h-6" /> },
+    { href: "/userprofile", label: "Profile", icon: <User className="w-6 h-6" /> },
     { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
     { href: "/settings", label: "Settings", icon: <Settings className="w-6 h-6" /> },
     { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
@@ -79,8 +79,7 @@ const UserProfile = () => {
         </Sidebar>
 
         {/* Main Content */}
-        <div className={`flex-grow min-h-screen bg-[#000000] text-white 
-          ${sidebarOpen ? 'md:ml-64' : 'md:ml-0'} transition-all duration-300 p-8`}>
+        <div className={"flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white"}>
           <div className="flex items-center mb-6 ml-9">
             <h1 className="text-3xl font-bold">Welcome back, John Doe</h1>
           </div>

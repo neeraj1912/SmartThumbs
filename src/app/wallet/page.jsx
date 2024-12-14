@@ -1,7 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { Wallet, CreditCard, ChevronDown, ArrowDownToLine } from "lucide-react";
+
+// Lucide icons
+import {
+  Wallet,
+  CreditCard,
+  ChevronDown,
+  ArrowDownToLine,
+  Home,
+  LayoutDashboard,
+  FileText,
+  User,
+  Settings,
+  LogOut,
+} from "lucide-react";
+
+// UI components
 import {
   Card,
   CardContent,
@@ -29,6 +44,10 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+// Sidebar components
+import { Sidebar, SidebarBody, SidebarLink } from "@/components/sidebar";
+
+
 const mockTransactions = [
   {
     id: "1",
@@ -46,6 +65,32 @@ const mockTransactions = [
     currency: "ETH",
     status: "Processed",
   },
+];
+
+const sidebarLinks = [
+  { href: "/internalhome", label: "Home", icon: <Home className="w-6 h-6" /> },
+  {
+    href: "/dashboard",
+    label: "Dashboard",
+    icon: <LayoutDashboard className="w-6 h-6" />,
+  },
+  {
+    href: "/empTaskList",
+    label: "Tasks",
+    icon: <FileText className="w-6 h-6" />,
+    children: [
+      { href: "/tasks/data-labeling", label: "Data Labeling" },
+      { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
+    ],
+  },
+  { href: "/userprofile", label: "Profile", icon: <User className="w-6 h-6" /> },
+  { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
+  {
+    href: "/settings",
+    label: "Settings",
+    icon: <Settings className="w-6 h-6" />,
+  },
+  { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
 ];
 
 const WalletPage = () => {
@@ -70,7 +115,33 @@ const WalletPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6">
+    <div className="flex h-screen">
+          {/* Sidebar */}
+          <Sidebar
+            open={true}
+            animate={true}
+            className="fixed top-0 left-0 h-full z-50 shadow-lg shadow-white"
+          >
+            <SidebarBody>
+              {/* Logo */}
+              <div className="flex justify-center py-4">
+                <img src="/logo.png" alt="Logo" className="w-20 h-auto mb-8 mt-5" />
+              </div>
+    
+              {/* Sidebar Links */}
+              {sidebarLinks.map((link, index) => (
+                <SidebarLink key={index} link={link} />
+              ))}
+            </SidebarBody>
+          </Sidebar>
+    <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white p-6">
+    <div className="welcome-message px-4 mb-10">
+          <h2 className="text-4xl font-bold text-white mt-3 mb-1">
+            <span className="text-4xl font-bold bg-gradient-to-r f from-purple-500 via-violet-500 via-pink-500 to-blue-800 bg-clip-text text-transparent mb-2">
+              Micro Task Vault
+            </span>
+          </h2>
+          </div>
       <div className="max-w-4xl mx-auto">
         {/* Wallet Header with Gradient */}
         <div className="relative mb-8">
@@ -324,6 +395,7 @@ const WalletPage = () => {
           </DialogContent>
         </Dialog>
       </div>
+    </div>
     </div>
   );
 };
