@@ -1,55 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "@/components/sidebar";
-import {
-  Home,
-  LayoutDashboard,
-  FileText,
-  User,
-  Wallet,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import SidebarLinks from "@/components/sidebarLinks"; // Import the new SidebarLinks component
 import GreetingMessage from "@/components/GreetingMessage"; // Import the new GreetingMessage component
 import { WobbleCard } from "@/components/wobble-card"; // Import WobbleCard
 import { FaUpload, FaTasks } from "react-icons/fa";
 import Header from "@/components/header";
-const InternalHome = () => {
-  const [sidebarOpen] = useState(true);
 
-  const sidebarLinks = [
-    {
-      href: "/internalhome",
-      label: "Home",
-      icon: <Home className="w-6 h-6" />,
-    },
-    {
-      href: "/dashboard",
-      label: "Dashboard",
-      icon: <LayoutDashboard className="w-6 h-6" />,
-    },
-    {
-      href: "/empTaskList",
-      label: "Tasks",
-      icon: <FileText className="w-6 h-6" />,
-      children: [
-        { href: "/tasks/data-labeling", label: "Data Labeling" },
-        { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
-      ],
-    },
-    {
-      href: "/userprofile",
-      label: "Profile",
-      icon: <User className="w-6 h-6" />,
-    },
-    { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
-    {
-      href: "/settings",
-      label: "Settings",
-      icon: <Settings className="w-6 h-6" />,
-    },
-    { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
-  ];
+const InternalHome = () => {
+  const [sidebarOpen] = useState(false);
 
   const recentTasks = [
     {
@@ -75,32 +33,11 @@ const InternalHome = () => {
   return (
     <div className="flex h-screen">
       {/* Fixed Sidebar (always open) */}
-      <Sidebar
-        open={sidebarOpen}
-        animate={true} // Disable animation for collapsing
-        className="fixed top-0 left-0 h-full z-50 shadow-lg shadow-white" // Added shadow to the sidebar
-      >
-        <SidebarBody>
-          {/* Logo */}
-          <div className="flex justify-center py-4">
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-20 h-auto mb-8 mt-5" // Fixed logo size
-            />
-          </div>
-
-          {/* Sidebar Links */}
-          {sidebarLinks.map((link, index) => (
-            <SidebarLink key={index} link={link} />
-          ))}
-        </SidebarBody>
-      </Sidebar>
+      <SidebarLinks /> {/* Use the SidebarLinks component here */}
 
       {/* Main Content */}
       <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white">
         <Header title={<GreetingMessage user="John Doe" />}></Header>
-        {/* Pass the user prop to the GreetingMessage component */}
 
         {/* Wobble Cards */}
         <div className="task-cards flex space-x-4 p-4">
@@ -132,7 +69,7 @@ const InternalHome = () => {
             </h2>
             <p className="text-slate-200 text-md mb-6 relative leading-relaxed">
               Assist in organizing and categorizing datasets by adding precise
-              labels to enhance model accuracy and training efficiency.{" "}
+              labels to enhance model accuracy and training efficiency.
             </p>
             <div className="flex space-x-6 relative">
               <button className="flex items-center bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-800 transition transform hover:scale-105">
