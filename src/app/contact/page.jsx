@@ -158,7 +158,7 @@ const ContactPage = () => {
                   <Mail className="mr-4 text-purple-500" size={24} />
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-zinc-400">support@taskmicrowallet.com</p>
+                    <p className="text-zinc-400">support@taskmicrovault.com</p>
                   </div>
                 </div>
 
@@ -166,7 +166,7 @@ const ContactPage = () => {
                   <Phone className="mr-4 text-green-500" size={24} />
                   <div>
                     <h3 className="font-semibold">Phone</h3>
-                    <p className="text-zinc-400">+1 (555) 123-4567</p>
+                    <p className="text-zinc-400">+91 9993183065</p>
                   </div>
                 </div>
 
@@ -174,7 +174,7 @@ const ContactPage = () => {
                   <MapPin className="mr-4 text-red-500" size={24} />
                   <div>
                     <h3 className="font-semibold">Address</h3>
-                    <p className="text-zinc-400">123 Task Street, Tech Hub, CA 94000</p>
+                    <p className="text-zinc-400">VIT Bhopal Univeristy, <br></br>Kotri Kalan, Sehore, <br></br>Madhya Pradesh, India-466114 </p>
                   </div>
                 </div>
               </div>
