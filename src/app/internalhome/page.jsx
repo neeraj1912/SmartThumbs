@@ -14,6 +14,8 @@ import GreetingMessage from "@/components/GreetingMessage"; // Import the new Gr
 import { WobbleCard } from "@/components/wobble-card"; // Import WobbleCard
 import { FaUpload, FaTasks } from "react-icons/fa";
 import Header from "@/components/header";
+import Link from "next/link";
+
 const InternalHome = () => {
   const [sidebarOpen] = useState(true);
 
@@ -115,12 +117,16 @@ const InternalHome = () => {
               relevance, and potential engagement to improve content selection.
             </p>
             <div className="flex space-x-6 relative">
-              <button className="flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-800 transition transform hover:scale-105">
-                <FaUpload className="mr-2" /> Upload Task
-              </button>
-              <button className="flex items-center bg-violet-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-violet-800 transition transform hover:scale-105">
-                <FaTasks className="mr-2" /> Do Task
-              </button>
+              <Link href="/thumbnailupload">
+                <button className="flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-800 transition transform hover:scale-105">
+                  <FaUpload className="mr-2" /> Upload Task
+                </button>
+              </Link>
+              <Link href="/empTaskList">
+                <button className="flex items-center bg-violet-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-violet-800 transition transform hover:scale-105">
+                  <FaTasks className="mr-2" /> Do Task
+                </button>
+              </Link>
             </div>
           </WobbleCard>
 
@@ -135,12 +141,16 @@ const InternalHome = () => {
               labels to enhance model accuracy and training efficiency.{" "}
             </p>
             <div className="flex space-x-6 relative">
-              <button className="flex items-center bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-800 transition transform hover:scale-105">
-                <FaUpload className="mr-2" /> Upload Task
-              </button>
-              <button className="flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-800 transition transform hover:scale-105">
-                <FaTasks className="mr-2" /> Do Task
-              </button>
+              <Link href="/labeltaskupload">
+                <button className="flex items-center bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-800 transition transform hover:scale-105">
+                  <FaUpload className="mr-2" /> Upload Task
+                </button>
+              </Link>
+              <Link href="/empTaskList">
+                <button className="flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-800 transition transform hover:scale-105">
+                  <FaTasks className="mr-2" /> Do Task
+                </button>
+              </Link>
             </div>
           </WobbleCard>
         </div>
