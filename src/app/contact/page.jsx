@@ -12,7 +12,6 @@ import Header from "@/components/HeaderWithFloatingNavbar";import {
 } from 'lucide-react';
 
 
-
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
