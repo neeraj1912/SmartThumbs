@@ -38,24 +38,7 @@ const ThumbnailUploadPage = () => {
     });
   };
 
-  const sidebarLinks = [
-    { href: "/internalhome", label: "Home", icon: <Home className="w-6 h-6" /> },
-    { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-6 h-6" /> },
-    {
-      href: "/empTaskList",
-      label: "Tasks",
-      icon: <FileText className="w-6 h-6" />,
-      children: [
-        { href: "/tasks/data-labeling", label: "Data Labeling" },
-        { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
-      ],
-    },
-    { href: "/userprofile", label: "Profile", icon: <User className="w-6 h-6" /> },
-    { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
-    { href: "/settings", label: "Settings", icon: <Settings className="w-6 h-6" /> },
-    { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
-  ];
-
+  
   return (
     <>
       <div className="flex h-screen">
