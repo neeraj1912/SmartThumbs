@@ -38,7 +38,7 @@ const InternalHome = () => {
           {/* Logo */}
           <div className="flex justify-center py-4">
             <img 
-              src="/logo.png" 
+              src="/images/logo.png" 
               alt="Logo" 
               className="w-20 h-auto mb-8 mt-5"  // Fixed logo size
             />

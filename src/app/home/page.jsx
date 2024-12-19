@@ -7,10 +7,12 @@ import LinkPreviewDemo from "./preview"
 import AppleCardsCarouselDemo from "./appleCarousel"
 import AnimatedTestimonialsDemo from './testimonials'
 import Footer from "./footer"  // Note the capital F
+import MacbookScrollDemo  from "./macbookScroll";
 
 const Home = () => {
   return (
     <div className='bg-black text-white min-h-screen'>
+      
       <Navbar />
       <Hero />
       <AnimatedBeamMultipleOutputDemo/>

@@ -32,13 +32,13 @@ export default function FloatingNavDemo() {
   ];
 
   return (
-    <div className="relative w-full bg-black h-28  border-b border-slate-800">
+    <div className="relative w-full bg-black h-24  border-b border-slate-800">
       <div className="flex items-center justify-between px-4 h-full">
         <div className="flex items-center">
           <img
             src="/images/logo.png"
             alt="Logo"
-            className="h-20 w-30 object-cover"
+            className="h-16 w-30 object-cover"
           />
         </div>
         {/* <div className="flex-1 flex justify-center"> */}
