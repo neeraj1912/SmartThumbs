@@ -12,9 +12,19 @@ import {
   Wallet,
   Settings,
   LogOut,
+  Target,
+  Bolt,
 } from "lucide-react";
-import { Sidebar, SidebarBody, SidebarLink } from "@/components/sidebar";
+import SidebarLinks from "@/components/sidebarLinks"; // Import the new SidebarLinks component
 
+import Header from "@/components/header";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+
+const handleButtonClick = () => {
+  // You can add any additional logic here if needed
+  router.push("/labeltaskupload");
+};
 
 // Mock data for tasks with crypto payment amounts
 const initialTasks = [
@@ -51,34 +61,21 @@ const initialTasks = [
     estimatedTime: "1.5 hours",
     currency: "BTC",
   },
+  {
+    id: 4,
+    type: "Thumbnail Rating",
+    complexity: "Complex",
+    contentCategory: "Education",
+    title: "Educational Content Semantic Labeling",
+    description: "Perform detailed semantic labeling of educational texts",
+    paymentAmount: 0.00069,
+    estimatedTime: "6.9 hours",
+    currency: "BTC",
+  },
 ];
 
 // Sidebar links
-const sidebarLinks = [
-  { href: "/internalhome", label: "Home", icon: <Home className="w-6 h-6" /> },
-  {
-    href: "/dashboard",
-    label: "Dashboard",
-    icon: <LayoutDashboard className="w-6 h-6" />,
-  },
-  {
-    href: "/empTaskList",
-    label: "Tasks",
-    icon: <FileText className="w-6 h-6" />,
-    children: [
-      { href: "/tasks/data-labeling", label: "Data Labeling" },
-      { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
-    ],
-  },
-  { href: "/profile", label: "Profile", icon: <User className="w-6 h-6" /> },
-  { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
-  {
-    href: "/settings",
-    label: "Settings",
-    icon: <Settings className="w-6 h-6" />,
-  },
-  { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
-];
+
 
 const TaskListPage = () => {
   // Search and Sort states
@@ -111,40 +108,15 @@ const TaskListPage = () => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <Sidebar
-        open={true}
-        animate={true}
-        className="fixed top-0 left-0 h-full z-50 shadow-lg shadow-white"
-      >
-        <SidebarBody>
-          {/* Logo */}
-          <div className="flex justify-center py-4">
-            <img src="/logo.png" alt="Logo" className="w-20 h-auto mb-8 mt-5" />
-          </div>
-
-          {/* Sidebar Links */}
-          {sidebarLinks.map((link, index) => (
-            <SidebarLink key={index} link={link} />
-          ))}
-        </SidebarBody>
-      </Sidebar>
+      <SidebarLinks />
 
       {/* Right Side - Tasks List */}
       <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950">
-        <div className="welcome-message px-4">
-          <h2 className="text-4xl font-bold text-white mt-3 mb-1">
-            <span className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-700 bg-clip-text text-transparent mb-2">
-              Micro Task Vault
-            </span>
-          </h2>
-          <div class=" text-5xl font-semibold text-center text-slate-200">Task List
+        {/* New Header */}
+         <Header title="Task"></Header>
   
-</div>
-
-        </div>
-        <hr class="w-2/3 h-1 mx-auto my-1 bg-gradient-to-r from-purple-500/30 via-indigo-500/30 to-blue-500/30 border-0 rounded md:my-7 dark:bg-gradient-to-r dark:from-purple-700/30 dark:via-indigo-700/30 dark:to-blue-700/30"></hr>
-
-        {/* Search and Filter Section */}
+  {/* Main Content */}
+ 
         <div className="flex mb-4 space-x-4 items-center">
           {/* Search Input */}
           <div className="flex-grow relative">
@@ -197,7 +169,6 @@ const TaskListPage = () => {
           <div
             key={task.id}
             className="p-4 mb-4 rounded bg-zinc-800 transition-shadow hover:shadow-[0_4px_6px_rgba(138,57,252,0.2),_0_4px_15px_rgba(139,92,246,0.3),_0_4px_25px_rgba(59,130,246,0.4)]"
-
           >
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-semibold text-white">{task.title}</h3>
@@ -221,13 +192,13 @@ const TaskListPage = () => {
                       ? "text-blue-500"
                       : task.type === "Thumbnail Rating"
                       ? "text-purple-600"
-                      : "text-blue-600"
+                      : "text-pink-600"
                   }`}
                 >
                   {task.type}
                 </div>
               </div>
-              <button class="px-5 py-3 text-xs uppercase tracking-widest font-medium text-slate-300 bg-gradient-to-r from-purple-800 to-blue-800 border-none rounded-full shadow-lg transition-all duration-300 ease-in-out outline-none cursor-pointer hover:from-blue-600 hover:to-purple-600 hover:text-white hover:shadow-xl hover:-translate-y-2 active:-translate-y-0.5">
+              <button href="/labeltaskupload" class="px-5 py-3 text-xs uppercase tracking-widest font-medium text-slate-300 bg-gradient-to-r from-purple-800 to-blue-800 border-none rounded-full shadow-lg transition-all duration-300 ease-in-out outline-none cursor-pointer hover:from-blue-600 hover:to-purple-600 hover:text-white hover:shadow-xl hover:-translate-y-2 active:-translate-y-0.5">
                 Do Task
               </button>
             </div>

@@ -34,23 +34,23 @@ export default function AnimatedBeamMultipleOutputDemo({ className }) {
   return (
     <div
       className={cn(
-        "relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg bg-black p-10 md:shadow-xl",
+        "relative flex h-[500px] w-full items-center justify-center overflow-hidden  bg-tranparent p-10 md:shadow-xl",
         className
       )}
       ref={containerRef}
     >
-      <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
+      <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-4">
         <div className="flex flex-col justify-center">
           <Circle ref={div7Ref}>
             <Icons.user />
           </Circle>
         </div>
         <div className="flex flex-col justify-center">
-          <Circle ref={div6Ref} className="size-16">
+          <Circle ref={div6Ref} className="size-20 ">
             <Icons.microtask/>
           </Circle>
         </div>
-        <div className="flex flex-col justify-center gap-2">
+        <div className="flex flex-col justify-center gap-4">
           <Circle ref={div1Ref}>
             <Icons.user />
           </Circle>
@@ -74,37 +74,37 @@ export default function AnimatedBeamMultipleOutputDemo({ className }) {
         containerRef={containerRef}
         fromRef={div1Ref}
         toRef={div6Ref}
-        duration={3}
+        duration={2}
       />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={div2Ref}
         toRef={div6Ref}
-        duration={3}
+        duration={1}
       />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={div3Ref}
         toRef={div6Ref}
-        duration={3}
+        duration={1}
       />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={div4Ref}
         toRef={div6Ref}
-        duration={3}
+        duration={1}
       />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={div5Ref}
         toRef={div6Ref}
-        duration={3}
+        duration={1}
       />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={div6Ref}
         toRef={div7Ref}
-        duration={3}
+        duration={1}
       />
     </div>
   );

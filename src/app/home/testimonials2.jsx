@@ -41,7 +41,10 @@ export default function AnimatedTestimonialsDemo() {
 
   return (
     <div className="space-y-8">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white dark:text-neutral-200 font-sans">TESTIMONIALS</h2>
+      <h2
+        className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white dark:text-neutral-200 font-sans">
+       Testimonals
+      </h2>
       <AnimatedTestimonials testimonials={testimonials} />
     </div>
   );

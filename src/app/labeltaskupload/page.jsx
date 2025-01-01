@@ -1,6 +1,8 @@
 "use client"
 import React, { useState } from 'react';
-import { Upload, Link, Clock, Bitcoin, FileText } from 'lucide-react';
+import SidebarLinks from "@/components/sidebarLinks"; // Import the new SidebarLinks component
+import Header from "@/components/header";
+import { Upload, Link, Clock, Bitcoin, FileText, Home, LayoutDashboard, User, Wallet, Settings, LogOut } from 'lucide-react';
 
 const TaskCreationPage = () => {
   const [uploadMethod, setUploadMethod] = useState('file');
@@ -23,6 +25,8 @@ const TaskCreationPage = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
+
+ 
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -85,15 +89,20 @@ const TaskCreationPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white relative">
+   <div className="flex h-screen">
+         {/* Sidebar */}
+         <SidebarLinks />
+    <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white relative">
+
+    <Header title="Label Upload" />
       {/* Logo in the top-left corner */}
-      <div className="absolute top-4 left-4">
+      {/* <div className="absolute top-4 left-4">
         <img
           src="/logo.png"
           alt="Logo"
           className="h-12 w-auto" // Adjust height and width as needed
         />
-      </div>
+      </div> */}
   <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center p-4">
       <div className="bg-zinc-950 shadow-md rounded-lg p-8 w-full max-w-2xl">
         <h2 className="text-3xl font-bold mb-6 text-center text-white">Create New Task</h2>
@@ -394,6 +403,7 @@ const TaskCreationPage = () => {
         </form>
         </div>
       </div>
+    </div>
     </div>
   );
 };

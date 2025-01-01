@@ -7,11 +7,10 @@ export default function Page() {
   const [password, setPassword] = useState('');
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-700 overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-zinc-950 to-zinc-800 overflow-hidden">
       <div 
-        className="w-full max-w-md p-8 mx-4 rounded-2xl border relative z-10"
+        className="w-full max-w-md p-8 mx-4 rounded-2xl border relative z-10 bg-zinc-800"
         style={{
-          background: 'rgba(255, 255, 255, 0.1)',
           backdropFilter: 'blur(10px)',
           borderColor: 'rgba(255, 255, 255, 0.1)',
           animation: 'float 3s infinite ease-in-out'
@@ -61,10 +60,7 @@ export default function Page() {
 
           <button
             type="submit"
-            className="w-full py-4 rounded-full text-white font-semibold transition duration-300 hover:-translate-y-1"
-            style={{
-              background: 'linear-gradient(45deg, #00b4db, #0083b0)',
-            }}
+            className="w-full py-4 rounded-full text-white font-semibold transition duration-300 hover:-translate-y-1 bg-gradient-to-br from-blue-600 to-blue-500"
           >
             Sign In
           </button>
