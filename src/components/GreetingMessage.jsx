@@ -21,7 +21,7 @@ const GreetingMessage = ({ user = "Guest" }) => {
       <h1 className="text-4xl font-bold text-white mt-3">
         {greeting}, <span className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-violet-500 via-pink-500 to-blue-800 bg-clip-text text-transparent">{user}!</span>
       </h1>
-      <p className="text-gray-500 text-2xl mt-2">Welcome to Micro Task Vault.</p>
+      <p className="text-slate-400 text-2xl mt-2">Welcome to Micro Task Vault.</p>
     </div>
   );
 };

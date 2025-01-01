@@ -1,7 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { Wallet, CreditCard, ChevronDown, ArrowDownToLine } from "lucide-react";
+import Header from "@/components/header";
+// Lucide icons
+import {
+  Wallet,
+  CreditCard,
+  ChevronDown,
+  ArrowDownToLine,
+  Home,
+  LayoutDashboard,
+  FileText,
+  User,
+  Settings,
+  LogOut,
+} from "lucide-react";
+
+// UI components
 import {
   Card,
   CardContent,
@@ -29,6 +44,10 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+// Sidebar components
+import SidebarLinks from "@/components/sidebarLinks"; // Import the new SidebarLinks component
+
+
 const mockTransactions = [
   {
     id: "1",
@@ -47,6 +66,7 @@ const mockTransactions = [
     status: "Processed",
   },
 ];
+
 
 const WalletPage = () => {
   const [balance, setBalance] = useState(1.25);
@@ -70,16 +90,20 @@ const WalletPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6">
+    <div className="flex h-screen">
+          {/* Sidebar */}
+          <SidebarLinks />
+    <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white p-6">
+    <Header title="Wallet"></Header>
       <div className="max-w-4xl mx-auto">
         {/* Wallet Header with Gradient */}
         <div className="relative mb-8">
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-400/20 to-purple-600/20 opacity-50 blur-xl rounded-xl"></div>
           <div className="relative z-10 flex justify-between items-center p-6 bg-zinc-900/60 backdrop-blur-md rounded-xl border border-zinc-800">
             <div>
-              <h1 className="text-3xl font-bold text-purple-500 flex items-center">
-                <Wallet className="mr-4 w-8 h-8" />
-                Wallet
+              <h1 className="text-3xl font-bold text-slate-100 flex items-center">
+                <Wallet className="mr-4 w-8 h-8 text-purple-500" />
+                Joe Doe
               </h1>
               <p className="text-zinc-400 mt-2">Manage your earnings </p>
             </div>
@@ -324,6 +348,7 @@ const WalletPage = () => {
           </DialogContent>
         </Dialog>
       </div>
+    </div>
     </div>
   );
 };
