@@ -1,13 +1,11 @@
-"use client";
+"use client"
 import React, { useState } from "react";
-import SidebarLinks from "@/components/sidebarLinks"; // Import the new SidebarLinks component
-import GreetingMessage from "@/components/GreetingMessage"; // Import the new GreetingMessage component
-import { WobbleCard } from "@/components/wobble-card"; // Import WobbleCard
+import SidebarLinks from "@/components/sidebarLinks";
+import GreetingMessage from "@/components/GreetingMessage";
+import { WobbleCard } from "@/components/wobble-card";
 import { FaUpload, FaTasks } from "react-icons/fa";
 import Header from "@/components/header";
-import Link from "next/link";
-
-const InternalHome = () => {
+import Link from "next/link"; // Import Link from Next.js
 
 const InternalHome = () => {
   const [sidebarOpen] = useState(false);
@@ -36,33 +34,11 @@ const InternalHome = () => {
   return (
     <div className="flex h-screen">
       {/* Fixed Sidebar (always open) */}
-      <Sidebar
-        open={sidebarOpen}
-        animate={true}  // Disable animation for collapsing
-        className="fixed top-0 left-0 h-full z-50 shadow-lg shadow-white"  // Added shadow to the sidebar
-      >
-        <SidebarBody>
-          {/* Logo */}
-          <div className="flex justify-center py-4">
-            <img 
-              src="/images/logo.png" 
-              alt="Logo" 
-              className="w-20 h-auto mb-8 mt-5"  // Fixed logo size
-            />
-          </div>
-          
-          {/* Sidebar Links */}
-          {sidebarLinks.map((link, index) => (
-            <SidebarLink key={index} link={link} />
-          ))}
-        </SidebarBody>
-      </Sidebar>
+      <SidebarLinks /> {/* Use the SidebarLinks component here */}
 
-      {/* Main Content */}
       <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white">
         <Header title={<GreetingMessage user="John Doe" />}></Header>
 
-        {/* Wobble Cards */}
         <div className="task-cards flex space-x-4 p-4">
           {/* Card 1: Thumbnail Rating */}
           <WobbleCard containerClassName="flex-1 bg-gray-900 border-gray-800 rounded-lg relative overflow-hidden">
@@ -112,11 +88,10 @@ const InternalHome = () => {
             </div>
           </WobbleCard>
         </div>
-
-        {/* Recent Tasks Section */}
-        <div className="recent-tasks mt-8 p-6">
+      {/* Recent Tasks Section */}
+      <div className="recent-tasks mt-8 p-6">
           <h3 className="text-3xl font-semibold text-white mb-4">
-            Recent Tasks
+            Recently Upload Tasks
           </h3>
           <div className="space-y-4">
             {recentTasks.map((task) => (

@@ -1,26 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { Upload, X, Plus } from "lucide-react";
-import { Sidebar, SidebarBody, SidebarLink } from "@/components/sidebar";
-
-import { 
-  Home, 
-  LayoutDashboard, 
-  FileText, 
-  User, 
-  Wallet, 
-  Settings, 
-  LogOut, 
-  ImageIcon, 
-  BarChart, 
-  Layers, 
-  Target, 
-  Zap, 
-  Users, 
-  DollarSign, 
-  Award
-} from 'lucide-react';
-
+import SidebarLinks from "@/components/sidebarLinks"; // Import the new SidebarLinks component
+import Header from "@/components/header";
+import Link from "next/link"; // Import Link from Next.js
 const ThumbnailUploadPage = () => {
   const [thumbnails, setThumbnails] = useState([]);
   const [taskTitle, setTaskTitle] = useState("");
@@ -55,50 +38,25 @@ const ThumbnailUploadPage = () => {
     });
   };
 
-  const sidebarLinks = [
-    { href: "/internalhome", label: "Home", icon: <Home className="w-6 h-6" /> },
-    { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-6 h-6" /> },
-    {
-      href: "/empTaskList",
-      label: "Tasks",
-      icon: <FileText className="w-6 h-6" />,
-      children: [
-        { href: "/tasks/data-labeling", label: "Data Labeling" },
-        { href: "/tasks/thumbnail-rating", label: "Thumbnail Rating" },
-      ],
-    },
-    { href: "/userprofile", label: "Profile", icon: <User className="w-6 h-6" /> },
-    { href: "/wallet", label: "Wallet", icon: <Wallet className="w-6 h-6" /> },
-    { href: "/settings", label: "Settings", icon: <Settings className="w-6 h-6" /> },
-    { href: "/logout", label: "Logout", icon: <LogOut className="w-6 h-6" /> },
-  ];
-
+  
   return (
-    <div className="bg-gray-950">
-      <Sidebar
-        open={true}
-        animate={true}
-        className="fixed top-0 left-0 h-full z-50 shadow-lg shadow-white"
-      >
-        <SidebarBody>
-          {/* Logo */}
-          <div className="flex justify-center py-4">
-            <img src="/logo.png" alt="Logo" className="w-20 h-auto mb-8 mt-5" />
-          </div>
+    <>
+      <div className="flex h-screen">
+      {/* Sidebar */}
+      <SidebarLinks />
 
-          {/* Sidebar Links */}
-          {sidebarLinks.map((link, index) => (
-            <SidebarLink key={index} link={link} />
-          ))}
-        </SidebarBody>
-      </Sidebar>
-      <div className="w-4/5 ml-auto py-8 bg-gray-950 min-h-screen">
+      {/* Main Content */}
+      <div className="flex-1  pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white">
+        {/* Header */}
+        <Header title="Thumbnail Upload" />
+     
+        <div className=" pt-7">
         <form
           onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto shadow-2xl rounded-2xl p-8 border border-purple-300"
+          className="max-w-2xl mx-auto shadow-2xl rounded-2xl p-8 "
         >
-          <h1 className="text-3xl font-bold mb-6 text-center text-white">
-            Create Thumbnail Feedback Task
+          <h1 className="text-4xl font-semibold mb-6 text-center text-white pb-6">
+            Create Thumbnail Rating Task
           </h1>
 
           {/* Task Title */}
@@ -114,7 +72,7 @@ const ThumbnailUploadPage = () => {
               id="taskTitle"
               value={taskTitle}
               onChange={(e) => setTaskTitle(e.target.value)}
-              className="w-full px-3 py-2 bg-black border border-purple-300 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 bg-zinc-800  text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
               placeholder="Enter task title (e.g., Best Thumbnail for Video)"
               required
             />
@@ -132,7 +90,7 @@ const ThumbnailUploadPage = () => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3 py-2 bg-black border border-purple-300 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full px-3 py-2 bg-zinc-800  text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
               rows="4"
               placeholder="Provide details about the thumbnail task"
               required
@@ -148,7 +106,7 @@ const ThumbnailUploadPage = () => {
               {thumbnails.map((thumb) => (
                 <div
                   key={thumb.id}
-                  className="relative border-2 border-purple-300 rounded-lg overflow-hidden"
+                  className="relative rounded-lg overflow-hidden"
                 >
                   <img
                     src={thumb.preview}
@@ -165,7 +123,7 @@ const ThumbnailUploadPage = () => {
                 </div>
               ))}
               {thumbnails.length < 6 && (
-                <label className="border-2 border-purple-300 border-dashed rounded-lg flex items-center justify-center cursor-pointer h-40 transition">
+                <label className="border-2 border-zinc-400 border-dashed rounded-lg flex items-center justify-center cursor-pointer h-40 transition">
                   <input
                     type="file"
                     accept="image/*"
@@ -196,7 +154,7 @@ const ThumbnailUploadPage = () => {
                 id="totalPayment"
                 value={totalPayment}
                 onChange={(e) => setTotalPayment(e.target.value)}
-                className="w-full px-3 py-2 bg-black border border-purple-300 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className="w-full px-3 py-2 bg-zinc-800  text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
                 placeholder="Enter total payment"
                 min="0"
                 required
@@ -214,7 +172,7 @@ const ThumbnailUploadPage = () => {
                 id="targetFeedback"
                 value={targetFeedbackCount}
                 onChange={(e) => setTargetFeedbackCount(e.target.value)}
-                className="w-full px-3 py-2 bg-black border border-purple-300 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className="w-full px-3 py-2 bg-zinc-800  text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
                 placeholder="Number of feedback responses"
                 min="1"
                 required
@@ -226,14 +184,17 @@ const ThumbnailUploadPage = () => {
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full bg-purple-800 text-white py-3 rounded-md hover:bg-purple-700 transition duration-300 flex items-center justify-center"
+              className="w-full bg-violet-600 text-white py-3 rounded-md hover:bg-purple-700 transition duration-300 flex items-center justify-center"
             >
               <Plus className="mr-2" /> Create Thumbnail Task
             </button>
           </div>
         </form>
+        </div>
+       
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
