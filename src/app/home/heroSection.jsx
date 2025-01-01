@@ -21,9 +21,10 @@ export default function HeroHighlightDemo() {
         }}
         className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-slate-490 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto"
       >
-        "Your Gateway to Microjobs"{" "}
+        "Your Gateway to Microjobs"{" "} <br />
+        
         <Highlight className="text-black dark:text-white">
-          <br />
+          
           Label, Rate & Earn Crypto Now!
         </Highlight>
       </motion.h1>
@@ -42,7 +43,7 @@ export default function HeroHighlightDemo() {
         </p>
 
         {/* Get Started Button - Bottom Right Corner */}
-        <div className="absolute bottom-0 right-0 mr-4 mb-[-20px]">
+        <div className="mt-4">
           <a
             href="#"
             className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors shadow-lg"

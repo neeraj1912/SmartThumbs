@@ -33,7 +33,8 @@ const InternalHome = () => {
 
   return (
     <div className="flex h-screen">
-      <SidebarLinks />
+      {/* Fixed Sidebar (always open) */}
+      <SidebarLinks /> {/* Use the SidebarLinks component here */}
 
       <div className="flex-1 pt-6 px-5 pb-4 overflow-y-auto ml-[300px] bg-zinc-950 text-white">
         <Header title={<GreetingMessage user="John Doe" />}></Header>
