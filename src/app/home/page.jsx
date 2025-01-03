@@ -11,8 +11,6 @@ import Footer from "./footer2"  // Note the capital F
 const Home = () => {
   return (
     <div className='bg-black text-white min-h-screen'>
-
-      <h1>thank you mam for taking our review</h1>
       <Navbar />
       <Hero />
       <AnimatedBeamMultipleOutputDemo/>
