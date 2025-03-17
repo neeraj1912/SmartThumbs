@@ -166,4 +166,4 @@ const ThumbnailVoting = () => {
   );
 };
 
-export default Thumbnailvoting;
+export default ThumbnailVoting;
