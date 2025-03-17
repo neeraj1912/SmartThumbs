@@ -1,15 +1,36 @@
-"use client"
+'use client';
+
 import React, { useState } from 'react';
 import { Lock, User } from 'lucide-react';
+import { createClient } from "../../utils/supabase/client";
+import { useRouter } from 'next/navigation'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 
 const EmployerLoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add login logic here
-    console.log('Login attempted', { email, password });
+    
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      
+      if (error) throw error;
+      console.log('Login successful', data, error, email, password);
+      alert("Login successful!")
+      router.push('/internalhome') 
+    } catch (err) {
+      // toast.error(err.message);
+    }
   };
 
   return (

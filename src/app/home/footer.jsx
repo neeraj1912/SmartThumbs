@@ -19,6 +19,7 @@ const Footer = () => {
                 width={200} 
                 height={50} 
                 className="mb-0"
+                priority={true}
               />
               
             </Link>

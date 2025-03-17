@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Page() {
@@ -62,7 +63,9 @@ export default function Page() {
             type="submit"
             className="w-full py-4 rounded-full text-white font-semibold transition duration-300 hover:-translate-y-1 bg-gradient-to-br from-blue-600 to-blue-500"
           >
+            <Link href="/emplogin">
             Sign In
+            </Link>
           </button>
 
           <div className="text-center">
