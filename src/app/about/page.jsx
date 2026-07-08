@@ -43,17 +43,6 @@ const AboutUsPage = () => {
     }
   ];
 
-  const teamMembers = [
-    { name: "Parv Daga", role: "Member" },
-    { name: "Neeraj Choudhary", role: "Member" },
-    { name: "Ayush Patel", role: "Member" },
-    { name: "Rashi Dubey", role: "Member" },
-    { name: "Samridhi Jaiswal", role: "Member" },
-    { name: "Nakshatra Raghuvanshi", role: "Member" },
-    { name: "Ridhima Rai", role: "Member" },
-    { name: "Vedant Patel", role: "Member" }
-    
-  ];
 
   return (
     <div className="bg-zinc-950 min-h-screen text-white pt-5">
