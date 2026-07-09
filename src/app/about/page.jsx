@@ -85,7 +85,7 @@ const AboutUsPage = () => {
         </div>
 
         {/* Team Section */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
             Meet Our Team
           </h2>
@@ -98,7 +98,7 @@ const AboutUsPage = () => {
               />
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Achievements */}
         <div className="bg-zinc-900 rounded-2xl p-12 text-center">
